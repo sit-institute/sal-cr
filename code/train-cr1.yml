@@ -1,0 +1,74 @@
+baseline: &baseline
+  # Ziel: vollständige Remission erreicht
+  label_column_name: CR1_Y
+
+  # Namen der Werte des Ziels
+  label_values:
+    - Y
+    - N
+
+  # Anzahl der Top-Features für die Selektion
+  top_feature_count: 20
+
+  # Minimaler Feature Support für die Selektion
+  top_feature_support_min: 1
+
+  # Ausgeschlossene Features
+  drop:
+    - D16BMB # angenommen wir sind nicht schon am Tag 16 vorbeigekommen
+    - IT1STDTC # ungeachtet des absoluten Beginns der Induktionsther.
+
+    # Klassifikationen
+    - ELNRisk
+    - ECOG
+    - FAB
+    - WHO
+    - CGELN
+    - CGSTUD
+
+  # Klassifikationsalgorithmen
+  classifiers:
+    naive_Bayes:
+      type: GaussianNB
+    logistische_Regression:
+      type: LogisticRegression
+      params:
+        max_iter: 1000
+    Gradient_Boosting:
+      type: XGBClassifier
+    k-Nearest_Neighbors:
+      type: KNeighborsClassifier
+    Decision_Tree:
+      type: DecisionTreeClassifier
+    Random_Forest:
+      type: RandomForestClassifier
+    mult-Layer_Perceptron:
+      type: MLPClassifier
+      params:
+        max_iter: 1000
+    AdaBoost:
+      type: AdaBoostClassifier
+    Ridge:
+      type: RidgeClassifier
+    lineare_SVM:
+      type: SVC
+      params:
+        kernel: linear
+        probability: True
+    RBF-SVM:
+      type: SVC
+      params:
+        kernel: rbf
+        probability: True
+    polynomiale_SVM:
+      type: SVC
+      params:
+        kernel: poly
+        degree: 3
+        probability: True
+    passive_aggressive:
+      type: PassiveAggressiveClassifier
+
+# weitere Konfigurationen, die "baseline" als Grundlage nutzen
+#other:
+#  <<: *baseline

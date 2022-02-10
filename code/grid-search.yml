@@ -1,0 +1,137 @@
+baseline: &baseline
+  # Liste von Features, die nach erfolgtem Clustering mit verglichen werden sollen (Lernziele)
+  target_features:
+    - OSTM
+    - RFSTM
+    - EFSTM
+    - CR1_Y
+    - CR1_N
+
+  # Liste von Feature, die gefiltret, also keinen Einfluß haben sollen
+  drop:
+    - D16BMB # angenommen wir sind nicht schon am Tag 16 vorbeigekommen
+    - IT1STDTC # ungeachtet des absoluten Beginns der Induktionsther.
+
+    - ELNRisk
+    - CGELN
+    - CGSTUD
+    - ECOG
+    - FAB
+    - WHO
+
+    # Features, die nicht bei allen Studien vorkommen
+    - ASXL
+    - ATRX
+    - BCOR
+    - BRAF
+    - dmCEBPA
+    - CALR
+    - CBL
+    - CDKN
+    - CEBPA
+    - CSF
+    - CUX
+    - DNMT
+    - ETV
+    - EZH
+    - FBXW
+    - FLT
+    - GATA
+    - GNAS
+    - HRAS
+    - JAK
+    - IDH
+    - IKFZ
+    - IKZF
+    - KRAS
+    - KDM
+    - KIT
+    - MPL
+    - MYD
+    - NOTCH
+    - NPM
+    - NRAS
+    - PDGFRA
+    - PHF
+    - PTEN
+    - PTPN
+    - RAD
+    - RUNX
+    - smCEBPA
+    - SETBP
+    - SF
+    - SFRS
+    - SMC
+    - STAG
+    - TET
+    - TP
+    - U2AF
+    - WT
+    - ZRSR
+
+  # Liste der zu untersuchenden von Ziel-Dimensionalitäten
+  target_dimensionalities:
+    #- 1
+    - 2
+    #- 3
+    #- 4
+    #- 5
+
+  # Liste der zu untersuchenden von Tansformationsverfahren
+  transformation:
+    PrincipalComponentAnalysis:
+    #IncrementalPrincipalComponentAnalysis:
+    #SparsePrincipalComponentAnalysis:
+    #SingularValueDecomposition:
+    #GaussianRandomProjection:
+    #SparseRandomProjection:
+    #MultiDimensionalScaling:
+    ISOMAP:
+    #LinearLocalEmbedding:
+    #Mini-BatchDictionaryLearning:
+    #AutoEncoder:
+
+  # Minimale Clusteranzahl für Sanity-Check
+  min_number_of_clusters: 2
+  # Maximale Clusteranzahl für Sanity-Check
+  max_number_of_clusters: 8
+  # Minimale, relative Clustergröße für Sanity-check
+  min_rel_cluster_size: 0.1
+
+  # Liste der zu untersuchenden von Ziel-Clusteranzahlen
+  target_number_of_clusters:
+    - 2
+    - 3
+    #- 4
+    #- 5
+    #- 6
+
+  # Liste der zu untersuchenden von Clusterverfahren
+  clustering:
+    k-Means:
+    #TwoMeans:
+    #AgglomerativeClustering:
+    #SpectralClustering:
+    #Linkage:
+    BIRCH:
+    #GaussianMixture:
+    #
+    #OPTICS:
+    #MeanShift:
+    #DBSCAN:
+    #AffinityPropagation:
+
+  # Liste der zu untersuchenden von Cluster-Differenz-Metriken
+  cluster_evaluation:
+    #Saturated_Pairwise_Mean:
+    Pairwise_Median:
+
+  # Anzahl der besten Ergebnisse, die detailiert ausgegeben werden
+  max_number_of_results: 0
+  # Random Seed für Pseudo-Zufallsgeneratoren
+  random_seed: 2
+  # Anzahl Durchläufe ingesamt
+  runs_per_config: 1
+
+#other:
+#  <<: *baseline
